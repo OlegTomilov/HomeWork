@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Triger : MonoBehaviour
 {
@@ -9,13 +8,11 @@ public class Triger : MonoBehaviour
     [SerializeField] private GameObject _fireLeft;
     [SerializeField] private GameObject _fireRight;
     [SerializeField] private GameObject _alarmBox;
-    [SerializeField] private UnityEvent _alarmSound;
-    [SerializeField] private AudioSource _audioSource;
-    private bool isStay = false;
+    private AlarmSound _alarmSound;
 
-    private void Update()
+    private void Start()
     {
-        InvokeAlarmSound();
+        _alarmSound = GetComponent<AlarmSound>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,8 +21,7 @@ public class Triger : MonoBehaviour
         _fireLeft.SetActive(true);
         _fireRight.SetActive(true);
         _alarmBox.SetActive(true);
-        _alarmSound.Invoke();
-        isStay = true;
+        _alarmSound.StartAudio(1);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -34,19 +30,10 @@ public class Triger : MonoBehaviour
         _fireLeft.SetActive(false);
         _fireRight.SetActive(false);
         _alarmBox.SetActive(false);
-        isStay = false;
+        _alarmSound.StartAudio(-1);
     }
 
-    private void InvokeAlarmSound()
-    {
-        if(isStay)
-        {
-            _audioSource.volume += Time.deltaTime;
-        }
-        else
-        {
-            _audioSource.volume -= Time.deltaTime;
-        }
-    }
 
+
+    
 }

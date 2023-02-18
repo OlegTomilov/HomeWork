@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
@@ -14,26 +16,26 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        Walk();
     }
 
-    private void Move()
+    private void Walk()
     {
         if(Input.GetKey(KeyCode.D))
         {
             transform.Translate(_speed * Time.deltaTime, 0 , 0);
             ChangeToward(0);
-            _animator.SetBool("Move", true);
+            _animator.SetBool(States.Move, true);
         }
         else if(Input.GetKey(KeyCode.A))
         {
             transform.Translate(_speed * Time.deltaTime, 0, 0);
             ChangeToward(180);
-            _animator.SetBool("Move", true);
+            _animator.SetBool(States.Move, true);
         }
         else
         {
-            _animator.SetBool("Move", false);
+            _animator.SetBool(States.Move, false);
 
         }
     }
@@ -44,6 +46,9 @@ public class Player : MonoBehaviour
         rotation.y = yAxis;
         transform.rotation = Quaternion.Euler(rotation);
     }
+}
 
-    
+static class States
+{
+    public const string Move = nameof(Move);
 }

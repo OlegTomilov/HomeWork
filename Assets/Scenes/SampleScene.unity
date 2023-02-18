@@ -325,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145421847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.69071, y: -1.51, z: -3}
+  m_LocalPosition: {x: 4.03, y: 0.84, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -914,6 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 510567031}
   - component: {fileID: 510567030}
+  - component: {fileID: 510567033}
   - component: {fileID: 510567029}
   - component: {fileID: 510567032}
   m_Layer: 0
@@ -939,22 +940,6 @@ MonoBehaviour:
   _fireLeft: {fileID: 1507201085}
   _fireRight: {fileID: 633590477}
   _alarmBox: {fileID: 1138481383}
-  _alarmSound:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 510567032}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _audioSource: {fileID: 510567032}
 --- !u!61 &510567030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1006,7 +991,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3972dfc25f313ef42b7eaa7bab64a09c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0bf876106bc855a409a2991fb163558f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1092,6 +1077,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &510567033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510567028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80551ba88f068434c927904a3168da2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _alarmEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510567032}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0.64, y: 1.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2714,7 +2726,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1138481385}
   - component: {fileID: 1138481384}
-  - component: {fileID: 1138481386}
   - component: {fileID: 1138481387}
   m_Layer: 0
   m_Name: AlarmBox
@@ -2790,18 +2801,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138481386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138481383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f02749ea4567f0498d26ea77f1692e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1138481387
 Animator:
   serializedVersion: 4

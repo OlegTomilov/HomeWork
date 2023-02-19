@@ -6,9 +6,10 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
 
-public class AlarmSound : MonoBehaviour
+public class Alarm : MonoBehaviour
 {
     [SerializeField] private UnityEvent _alarmEvent;
+
     private AudioSource _audioSource;
 
     private void Start()

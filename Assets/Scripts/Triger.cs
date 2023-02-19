@@ -8,11 +8,11 @@ public class Triger : MonoBehaviour
     [SerializeField] private GameObject _fireLeft;
     [SerializeField] private GameObject _fireRight;
     [SerializeField] private GameObject _alarmBox;
-    private AlarmSound _alarmSound;
+    private Alarm _alarmSound;
 
     private void Start()
     {
-        _alarmSound = GetComponent<AlarmSound>();
+        _alarmSound = GetComponent<Alarm>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -21,7 +21,7 @@ public class Triger : MonoBehaviour
         _fireLeft.SetActive(true);
         _fireRight.SetActive(true);
         _alarmBox.SetActive(true);
-        _alarmSound.StartAudio(1);
+        Alarm.AlarmAction.Invoke();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -30,10 +30,6 @@ public class Triger : MonoBehaviour
         _fireLeft.SetActive(false);
         _fireRight.SetActive(false);
         _alarmBox.SetActive(false);
-        _alarmSound.StartAudio(-1);
+        Alarm.AlarmStop.Invoke();
     }
-
-
-
-    
 }

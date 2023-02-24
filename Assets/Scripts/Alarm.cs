@@ -8,33 +8,39 @@ using UnityEngine.Events;
 
 public class Alarm : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _alarmEvent;
+    public static UnityAction AlarmAction;
+    public static UnityAction AlarmStop;
 
     private AudioSource _audioSource;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.volume = 0;
+        _audioSource.volume = 0f;
+        AlarmAction += StartAudio;
+        AlarmStop += StopAudio;
     }
 
-    public void StartAudio(int inversion)
+    public void StartAudio()
     {
-        _alarmEvent.Invoke();
-        StartCoroutine(ChangeVolume(inversion));
+        _audioSource.Play();
+        StartCoroutine(ChangeVolume(1));
     }
 
-    private IEnumerator ChangeVolume(int inversion, float duration = 1000f)
+    public void StopAudio()
     {
-        var volume = _audioSource.volume;
+        StartCoroutine(ChangeVolume(0));
+    }
 
-        for (int i = 0; i < duration; i++)
+    private IEnumerator ChangeVolume(float maxVolume)
+    {
+        float step = 1f;
+
+        while (true)
         {
-            volume += Time.deltaTime * inversion;
-            _audioSource.volume = volume;
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, maxVolume, step * Time.deltaTime);
             yield return null;
         }
-
-        StopCoroutine(ChangeVolume(0));
     }
+
 }

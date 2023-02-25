@@ -12,6 +12,7 @@ public class Alarm : MonoBehaviour
     public static UnityAction AlarmStop;
 
     private AudioSource _audioSource;
+    private Coroutine _changeVolumeCoroutine;
 
     private void Start()
     {
@@ -24,12 +25,25 @@ public class Alarm : MonoBehaviour
     public void StartAudio()
     {
         _audioSource.Play();
-        StartCoroutine(ChangeVolume(1));
+
+        if (_changeVolumeCoroutine != null)
+        {
+            StopCoroutine(_changeVolumeCoroutine);
+            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(1));
+        }
+        else
+        {
+            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(1));
+        }
     }
 
     public void StopAudio()
     {
-        StartCoroutine(ChangeVolume(0));
+        if(_changeVolumeCoroutine != null)
+        {
+            StopCoroutine(_changeVolumeCoroutine);
+            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(0));
+        }
     }
 
     private IEnumerator ChangeVolume(float maxVolume)

@@ -13,6 +13,8 @@ public class Alarm : MonoBehaviour
 
     private AudioSource _audioSource;
     private Coroutine _changeVolumeCoroutine;
+    private int _increaseTheVolume = 1;
+    private int _decreaseTheVolume = 0;
 
     private void Start()
     {
@@ -25,24 +27,24 @@ public class Alarm : MonoBehaviour
     public void StartAudio()
     {
         _audioSource.Play();
-
-        if (_changeVolumeCoroutine != null)
-        {
-            StopCoroutine(_changeVolumeCoroutine);
-            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(1));
-        }
-        else
-        {
-            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(1));
-        }
+        ChangeDerectionOfVolume(_increaseTheVolume);
     }
 
     public void StopAudio()
     {
-        if(_changeVolumeCoroutine != null)
+        ChangeDerectionOfVolume(_decreaseTheVolume);
+    }
+
+    private void ChangeDerectionOfVolume(int inversion)
+    {
+        if (_changeVolumeCoroutine != null)
         {
             StopCoroutine(_changeVolumeCoroutine);
-            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(0));
+            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(inversion));
+        }
+        else
+        {
+            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(inversion));
         }
     }
 
@@ -56,5 +58,4 @@ public class Alarm : MonoBehaviour
             yield return null;
         }
     }
-
 }

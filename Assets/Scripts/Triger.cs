@@ -8,6 +8,7 @@ public class Triger : MonoBehaviour
     [SerializeField] private GameObject _fireLeft;
     [SerializeField] private GameObject _fireRight;
     [SerializeField] private GameObject _alarmBox;
+
     private Alarm _alarmSound;
 
     private void Start()

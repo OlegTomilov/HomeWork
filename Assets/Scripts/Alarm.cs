@@ -8,9 +8,6 @@ using UnityEngine.Events;
 
 public class Alarm : MonoBehaviour
 {
-    public static UnityAction AlarmAction;
-    public static UnityAction AlarmStop;
-
     private AudioSource _audioSource;
     private Coroutine _changeVolumeCoroutine;
     private int _increaseTheVolume = 1;
@@ -20,8 +17,6 @@ public class Alarm : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _audioSource.volume = 0f;
-        AlarmAction += StartAudio;
-        AlarmStop += StopAudio;
     }
 
     public void StartAudio()
@@ -37,22 +32,19 @@ public class Alarm : MonoBehaviour
 
     private void ChangeDerectionOfVolume(int inversion)
     {
-        if (_changeVolumeCoroutine != null)
+        if(_changeVolumeCoroutine != null)
         {
             StopCoroutine(_changeVolumeCoroutine);
-            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(inversion));
         }
-        else
-        {
-            _changeVolumeCoroutine = StartCoroutine(ChangeVolume(inversion));
-        }
+
+        _changeVolumeCoroutine = StartCoroutine(ChangeVolume(inversion));
     }
 
     private IEnumerator ChangeVolume(float maxVolume)
     {
         float step = 1f;
 
-        while (true)
+        while (_audioSource.volume != _decreaseTheVolume || _audioSource.volume != _increaseTheVolume)
         {
             _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, maxVolume, step * Time.deltaTime);
             yield return null;
